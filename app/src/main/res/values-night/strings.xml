@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="splash_screen_title">Fav Dish</string>
+    <string name="add_dish">Add Dish</string>
 </resources>
