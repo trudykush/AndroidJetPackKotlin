@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.kush.androidjetpackkotlin.databinding.FragmentHomeBinding
 import com.kush.androidjetpackkotlin.viewmodel.HomeViewModel
 
-class HomeFragment : Fragment() {
+class AllDishesFragfment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
