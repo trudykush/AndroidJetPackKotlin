@@ -1,4 +1,4 @@
-package com.kush.androidjetpackkotlin.ui.home
+package com.kush.androidjetpackkotlin.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.kush.androidjetpackkotlin.R
 import com.kush.androidjetpackkotlin.databinding.FragmentHomeBinding
+import com.kush.androidjetpackkotlin.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
 
