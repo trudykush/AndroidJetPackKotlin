@@ -49,7 +49,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/dish_image_background"
-                    android:contentDescription="Image Description"
+                    android:contentDescription="@string/image_description"
                     android:scaleType="fitXY"
                     tools:srcCompat="@tools:sample/avatars" />
 
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
                     android:padding="@dimen/_16sdp"
-                    android:contentDescription="Image Description"
+                    android:contentDescription="@string/image_description"
                     android:foreground="?attr/selectableItemBackgroundBorderless"
                     app:srcCompat="@drawable/ic_add_a_photo" />
 
@@ -67,19 +67,51 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
-                android:layout_width="0dp"
+                android:id="@+id/tit_title"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:hint="@string/lbl_title"
+                app:hintTextColor="@color/blue_grey_700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fl_select_image">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
+                    android:id="@+id/et_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="hint" />
+                    android:inputType="text"
+                    android:textColor="@color/grey_900"
+                    android:textSize="@dimen/_15sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tit_type"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:hint="@string/lbl_type"
+                app:hintTextColor="@color/blue_grey_700"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tit_title">
+
+            <EditText
+                android:id="@+id/et_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textColor="@color/grey_900"
+                android:textSize="@dimen/_15sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
