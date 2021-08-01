@@ -61,7 +61,7 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
             DialogCustomImageSelectionBinding.inflate(layoutInflater)
         dialog.setContentView(binding.root)
 
-        binding.tvCamera.setOnClickListener{
+        binding.tvCamera.setOnClickListener {
             Dexter.withContext(this).withPermissions(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -69,7 +69,8 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
             ).withListener(object: MultiplePermissionsListener {
                 override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                     if (report!!.areAllPermissionsGranted()) {
-                        Toast.makeText(this@AddUpdateDishActivity, "All permission granted", Toast.LENGTH_LONG)
+                        Toast.makeText(this@AddUpdateDishActivity,
+                            "Camera permission granted", Toast.LENGTH_LONG)
                             .show()
                     }
                 }
@@ -87,6 +88,27 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         binding.tvGallery.setOnClickListener {
+            Dexter.withContext(this).withPermissions(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ).withListener(object: MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                    if (report!!.areAllPermissionsGranted()) {
+                        Toast.makeText(this@AddUpdateDishActivity,
+                            "Gallery permission granted", Toast.LENGTH_LONG)
+                            .show()
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permissions: MutableList<PermissionRequest>?,
+                    token: PermissionToken?
+                ) {
+                    showRationalDialogForPermission()
+                }
+
+            }).onSameThread().check()
+
             dialog.dismiss()
         }
 
