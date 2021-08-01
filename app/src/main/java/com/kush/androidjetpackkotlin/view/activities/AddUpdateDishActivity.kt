@@ -52,7 +52,7 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
             dialog.dismiss()
         }
 
-        binding.tvGallery.setOnClickListener {
+        binding.tvGallery.seictOnClickListener {
             dialog.dismiss()
         }
 
