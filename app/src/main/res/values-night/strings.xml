@@ -14,4 +14,7 @@
     <string name="lbl_cooking_time_in_minutes">Cooking time in minutes</string>
     <string name="lbl_ingredients">Ingredients</string>
     <string name="lbl_category">Category</string>
+    <string name="title_select_image">Select Image Action</string>
+    <string name="lbl_camera">Camera</string>
+    <string name="lbl_gallery">Gallery</string>
 </resources>

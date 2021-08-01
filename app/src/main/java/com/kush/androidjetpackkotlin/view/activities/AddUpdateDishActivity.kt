@@ -17,6 +17,7 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(mBinding.root)
 
         setUpActionBar()
+        mBinding.ivAddDishImage.setOnClickListener(this)
 
     }
 
