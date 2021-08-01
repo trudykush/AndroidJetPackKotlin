@@ -2,10 +2,11 @@ package com.kush.androidjetpackkotlin.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.kush.androidjetpackkotlin.R
 import com.kush.androidjetpackkotlin.databinding.ActivityAddUpdateDishBinding
 
-class AddUpdateDishActivity : AppCompatActivity() {
+class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mBinding: ActivityAddUpdateDishBinding
 
@@ -15,5 +16,25 @@ class AddUpdateDishActivity : AppCompatActivity() {
         mBinding = ActivityAddUpdateDishBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
+        setUpActionBar()
+
+    }
+
+    private fun setUpActionBar() {
+        setSupportActionBar(mBinding.toolbarAddDishActivity)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        mBinding.toolbarAddDishActivity.setNavigationOnClickListener{
+            onBackPressed()
+        }
+    }
+
+    override fun onClick(v: View?) {
+        if (v != null) {
+            when(v.id) {
+                R.id.iv_add_dish_image -> {
+
+                }
+            }
+        }
     }
 }

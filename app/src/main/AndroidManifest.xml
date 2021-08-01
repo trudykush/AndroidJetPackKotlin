@@ -11,6 +11,7 @@
         android:theme="@style/Theme.AndroidJetPackKotlin">
         <activity android:name=".view.activities.AddUpdateDishActivity"
             android:label="Add Dish"
+            android:configChanges="orientation"
             android:theme="@style/Theme.FavDish.NoActionBar"/>
         <activity
             android:name=".view.activities.SplashActivity"
