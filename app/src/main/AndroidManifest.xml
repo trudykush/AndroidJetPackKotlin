@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kush.androidjetpackkotlin">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,10 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidJetPackKotlin">
-        <activity android:name=".view.activities.AddUpdateDishActivity"
-            android:label="Add Dish"
+        <activity
+            android:name=".glideDemo.GlideDemo"
+            android:exported="true" />
+        <activity
+            android:name=".view.activities.AddUpdateDishActivity"
             android:configChanges="orientation"
-            android:theme="@style/Theme.FavDish.NoActionBar"/>
+            android:label="Add Dish"
+            android:theme="@style/Theme.FavDish.NoActionBar" />
         <activity
             android:name=".view.activities.SplashActivity"
             android:theme="@style/Theme.FavDish.NoActionBar">
@@ -28,7 +32,7 @@
         </activity>
         <activity
             android:name=".view.activities.MainActivity"
-            android:label="@string/title_activity_main"/>
+            android:label="@string/title_activity_main" />
     </application>
 
 </manifest>
