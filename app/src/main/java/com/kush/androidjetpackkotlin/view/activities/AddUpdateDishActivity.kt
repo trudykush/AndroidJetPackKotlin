@@ -1,27 +1,23 @@
 package com.kush.androidjetpackkotlin.view.activities
 
-import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.View
-import com.karumi.dexter.Dexter
-import com.kush.androidjetpackkotlin.R
-import com.kush.androidjetpackkotlin.databinding.ActivityAddUpdateDishBinding
-import com.kush.androidjetpackkotlin.databinding.DialogCustomImageSelectionBinding
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.karumi.dexter.DexterBuilder
+import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -29,8 +25,9 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
-import java.lang.Exception
-import kotlin.math.log
+import com.kush.androidjetpackkotlin.R
+import com.kush.androidjetpackkotlin.databinding.ActivityAddUpdateDishBinding
+import com.kush.androidjetpackkotlin.databinding.DialogCustomImageSelectionBinding
 
 class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
 
