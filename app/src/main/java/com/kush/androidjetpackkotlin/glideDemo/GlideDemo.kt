@@ -32,5 +32,12 @@ class GlideDemo : AppCompatActivity() {
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(R.drawable.ic_add_a_photo)
             .into(imageTwo)
+
+        Glide.with(this)
+            .load(supermanImage)
+            .override(300, 400)
+            .centerCrop()
+            .error(R.drawable.ic_launcher_foreground)
+            .into(imageThree)
     }
 }
