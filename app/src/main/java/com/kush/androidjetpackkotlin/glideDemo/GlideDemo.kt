@@ -2,6 +2,7 @@ package com.kush.androidjetpackkotlin.glideDemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bumptech.glide.Glide
 import com.kush.androidjetpackkotlin.R
 import com.kush.androidjetpackkotlin.databinding.ActivityGlideDemoBinding
 
@@ -18,6 +19,10 @@ class GlideDemo : AppCompatActivity() {
         val imageOne = glideDemoBinding.imageOne
         val imageTwo = glideDemoBinding.imageTwo
         val imageThree = glideDemoBinding.imageThree
+
+        Glide.with(this)
+            .load(supermanImage)
+            .into(imageOne)
 
     }
 }
