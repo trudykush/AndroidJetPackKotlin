@@ -5,6 +5,8 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -29,6 +31,11 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.kush.androidjetpackkotlin.R
 import com.kush.androidjetpackkotlin.databinding.ActivityAddUpdateDishBinding
 import com.kush.androidjetpackkotlin.databinding.DialogCustomImageSelectionBinding
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
 class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -143,7 +150,6 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                 } else {
                     result.data?.extras?.let {
                         val bitmap: Bitmap = result.data?.extras?.get("data") as Bitmap
-
 //                        mBinding.ivDishImage.setImageBitmap(bitmap)
                         Glide.with(this)
                             .load(bitmap)
@@ -213,11 +219,29 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                     dialog.dismiss()
                 }
             }.show()
+    }
 
+    private fun saveImageToInternalStorage (bitmap: Bitmap) : String {
+        val wrapper = ContextWrapper(applicationContext)
+
+        var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
+        file = File(file, "${UUID.randomUUID()}.jpg")
+
+        try {
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+            stream.flush()
+            stream.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return file.absolutePath
     }
 
     companion object {
         private const val CAMERA = 1
         private const val GALLERY = 2
+
+        private const val IMAGE_DIRECTORY = "FavDishImages"
     }
 }
