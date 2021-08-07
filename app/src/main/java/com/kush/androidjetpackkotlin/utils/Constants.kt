@@ -18,4 +18,23 @@ object Constants {
         distTypeList.add("Others")
         return distTypeList
     }
+
+    fun dishCategories(): ArrayList<String> {
+        val dishCategoriesList = ArrayList<String>()
+        dishCategoriesList.add("Pizza")
+        dishCategoriesList.add("BBQ")
+        dishCategoriesList.add("Bakery")
+        dishCategoriesList.add("Burger")
+        dishCategoriesList.add("Cafe")
+        dishCategoriesList.add("Chicken")
+        dishCategoriesList.add("Dessert")
+        dishCategoriesList.add("Drinks")
+        dishCategoriesList.add("Hot Dogs")
+        dishCategoriesList.add("Juices")
+        dishCategoriesList.add("Sandwich")
+        dishCategoriesList.add("Tea & Coffee")
+        dishCategoriesList.add("Wraps")
+        dishCategoriesList.add("Others")
+        return dishCategoriesList
+    }
 }
