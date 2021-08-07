@@ -40,6 +40,7 @@ import java.util.*
 class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mBinding: ActivityAddUpdateDishBinding
+    private var mImagePath: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -155,6 +156,8 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                             .load(bitmap)
                             .centerCrop()
                             .into(mBinding.ivDishImage)
+
+                        mImagePath = saveImageToInternalStorage(bitmap)
 
                         mBinding.ivAddDishImage.setImageDrawable(
                             ContextCompat.getDrawable(
