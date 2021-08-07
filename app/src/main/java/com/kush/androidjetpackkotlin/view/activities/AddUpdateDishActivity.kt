@@ -90,10 +90,16 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                     return
                 }
                 R.id.et_category -> {
-
+                    customItemDialog(resources.getString(R.string.title_select_dish_category),
+                        Constants.dishCategories(),
+                        Constants.DISH_CATEGORY)
+                    return
                 }
                 R.id.et_cooking_time -> {
-
+                    customItemDialog(resources.getString(R.string.title_select_dish_cooking_time),
+                        Constants.dishCookingTime(),
+                        Constants.DISH_COOKING_TIME)
+                    return
                 }
             }
         }
