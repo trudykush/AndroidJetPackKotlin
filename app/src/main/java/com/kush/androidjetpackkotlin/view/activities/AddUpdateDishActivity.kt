@@ -176,6 +176,7 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                                 resource?.let {
                                     val bitmap: Bitmap = resource.toBitmap()
                                     mImagePath = saveImageToInternalStorage(bitmap)
+                                    Log.i("Image Path", mImagePath)
                                 }
                                 return false
                             }
@@ -192,7 +193,6 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                             .into(mBinding.ivDishImage)
 
                         mImagePath = saveImageToInternalStorage(bitmap)
-
                         Log.i("Image Path", mImagePath)
 
                         mBinding.ivAddDishImage.setImageDrawable(
