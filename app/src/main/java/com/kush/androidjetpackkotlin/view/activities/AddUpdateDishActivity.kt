@@ -41,6 +41,7 @@ import com.kush.androidjetpackkotlin.R
 import com.kush.androidjetpackkotlin.databinding.ActivityAddUpdateDishBinding
 import com.kush.androidjetpackkotlin.databinding.DialogCustomImageSelectionBinding
 import com.kush.androidjetpackkotlin.databinding.DialogCustomListBinding
+import com.kush.androidjetpackkotlin.utils.Constants
 import com.kush.androidjetpackkotlin.view.adapters.CustomListItemAdapter
 import java.io.File
 import java.io.FileOutputStream
@@ -62,6 +63,9 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         setUpActionBar()
         mBinding.ivAddDishImage.setOnClickListener(this)
 
+        mBinding.etType.setOnClickListener(this)
+        mBinding.etCategory.setOnClickListener(this)
+        mBinding.etCookingTime.setOnClickListener(this)
     }
 
     private fun setUpActionBar() {
@@ -78,6 +82,18 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.iv_add_dish_image -> {
                     customImageSelectionDialog()
                     return
+                }
+                R.id.et_type -> {
+                    customItemDialog(resources.getString(R.string.title_select_dish_type),
+                        Constants.dishTypes(),
+                        Constants.DISH_TYPE)
+                    return
+                }
+                R.id.et_category -> {
+
+                }
+                R.id.et_cooking_time -> {
+
                 }
             }
         }
@@ -149,7 +165,7 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     var addUpdateDishResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        result ->
+            result ->
         if (result.resultCode == Activity.RESULT_OK) {
             result?.let {
                 val selectedImage: Uri? = result.data?.data
