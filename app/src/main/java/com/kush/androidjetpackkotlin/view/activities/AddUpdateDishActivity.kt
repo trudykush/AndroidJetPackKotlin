@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -134,12 +135,20 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
             result?.let {
                 val selectedImage: Uri? = result.data?.data
                 if (selectedImage != null) {
-                    mBinding.ivDishImage.setImageURI(selectedImage)
+//                    mBinding.ivDishImage.setImageURI(selectedImage)
+                    Glide.with(this)
+                        .load(selectedImage)
+                        .centerCrop()
+                        .into(mBinding.ivDishImage)
                 } else {
                     result.data?.extras?.let {
                         val bitmap: Bitmap = result.data?.extras?.get("data") as Bitmap
 
-                        mBinding.ivDishImage.setImageBitmap(bitmap)
+//                        mBinding.ivDishImage.setImageBitmap(bitmap)
+                        Glide.with(this)
+                            .load(bitmap)
+                            .centerCrop()
+                            .into(mBinding.ivDishImage)
 
                         mBinding.ivAddDishImage.setImageDrawable(
                             ContextCompat.getDrawable(
