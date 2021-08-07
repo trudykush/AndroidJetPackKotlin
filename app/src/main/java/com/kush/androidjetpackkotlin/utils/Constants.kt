@@ -37,4 +37,21 @@ object Constants {
         dishCategoriesList.add("Others")
         return dishCategoriesList
     }
+
+    fun dishCookingTime(): ArrayList<String> {
+        val dishCookingTimeList  = ArrayList<String>()
+        dishCookingTimeList.add("10")
+        dishCookingTimeList.add("15")
+        dishCookingTimeList.add("20")
+        dishCookingTimeList.add("25")
+        dishCookingTimeList.add("30")
+        dishCookingTimeList.add("45")
+        dishCookingTimeList.add("50")
+        dishCookingTimeList.add("60")
+        dishCookingTimeList.add("90")
+        dishCookingTimeList.add("120")
+        dishCookingTimeList.add("150")
+        dishCookingTimeList.add("180")
+        return dishCookingTimeList
+    }
 }
