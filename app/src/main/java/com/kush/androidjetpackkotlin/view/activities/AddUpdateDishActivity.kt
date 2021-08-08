@@ -14,9 +14,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -54,6 +54,8 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mBinding: ActivityAddUpdateDishBinding
     private var mImagePath: String = ""
 
+    private lateinit var mCustomListDialog: Dialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -66,6 +68,8 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         mBinding.etType.setOnClickListener(this)
         mBinding.etCategory.setOnClickListener(this)
         mBinding.etCookingTime.setOnClickListener(this)
+
+        mBinding.btnAddDish.setOnClickListener(this)
     }
 
     private fun setUpActionBar() {
@@ -84,22 +88,79 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                     return
                 }
                 R.id.et_type -> {
-                    customItemDialog(resources.getString(R.string.title_select_dish_type),
+                    customItemListDialog(resources.getString(R.string.title_select_dish_type),
                         Constants.dishTypes(),
                         Constants.DISH_TYPE)
                     return
                 }
                 R.id.et_category -> {
-                    customItemDialog(resources.getString(R.string.title_select_dish_category),
+                    customItemListDialog(resources.getString(R.string.title_select_dish_category),
                         Constants.dishCategories(),
                         Constants.DISH_CATEGORY)
                     return
                 }
                 R.id.et_cooking_time -> {
-                    customItemDialog(resources.getString(R.string.title_select_dish_cooking_time),
+                    customItemListDialog(resources.getString(R.string.title_select_dish_cooking_time),
                         Constants.dishCookingTime(),
                         Constants.DISH_COOKING_TIME)
                     return
+                }
+                R.id.btn_add_dish -> {
+                    val title = mBinding.etTitle.text.toString().trim { it <= ' ' }
+                    val type = mBinding.etType. text.toString().trim { it <= ' ' }
+                    val category = mBinding.etCategory. text.toString().trim { it <= ' ' }
+                    val ingredients = mBinding.etIngredients. text.toString().trim { it <= ' ' }
+                    val cookingTimeInMinutes = mBinding.etCookingTime. text.toString().trim { it <= ' ' }
+                    val cookingDirection = mBinding.etDirectionToCook. text.toString().trim { it <= ' ' }
+
+                    when {
+                        TextUtils.isEmpty(mImagePath) -> {
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                resources.getString(R.string.err_msg_select_dish_image),
+                                Toast.LENGTH_LONG).show()
+                        }
+
+                        TextUtils.isEmpty(title) -> {
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                resources.getString(R.string.err_msg_select_dish_title),
+                                Toast.LENGTH_LONG).show()
+                        }
+
+                        TextUtils.isEmpty(type) -> {
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                resources.getString(R.string.err_msg_select_dish_type),
+                                Toast.LENGTH_LONG).show()
+                        }
+
+                        TextUtils.isEmpty(category) -> {
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                resources.getString(R.string.err_msg_select_dish_category),
+                                Toast.LENGTH_LONG).show()
+                        }
+
+                        TextUtils.isEmpty(ingredients) -> {
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                resources.getString(R.string.err_msg_select_dish_ingredients),
+                                Toast.LENGTH_LONG).show()
+                        }
+
+                        TextUtils.isEmpty(cookingTimeInMinutes) -> {
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                resources.getString(R.string.err_msg_select_dish_cooking_time),
+                                Toast.LENGTH_LONG).show()
+                        }
+
+                        TextUtils.isEmpty(cookingDirection) -> {
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                resources.getString(R.string.err_msg_select_dish_cooking_instruction),
+                                Toast.LENGTH_LONG).show()
+                        }
+                        else -> {
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                getString(R.string.all_valid_entries),
+                                Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
             }
         }
@@ -170,6 +231,23 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         dialog.show()
     }
 
+    fun selectedListItem(item: String, selection: String) {
+        when(selection) {
+            Constants.DISH_TYPE -> {
+                mCustomListDialog.dismiss()
+                mBinding.etType.setText(item)
+            }
+            Constants.DISH_CATEGORY -> {
+                mCustomListDialog.dismiss()
+                mBinding.etCategory.setText(item)
+            }
+            Constants.DISH_COOKING_TIME -> {
+                mCustomListDialog.dismiss()
+                mBinding.etCookingTime.setText(item)
+            }
+        }
+    }
+
     var addUpdateDishResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -233,35 +311,6 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == CAMERA) {
-                val bitmap: Bitmap = data?.extras?.get("data") as Bitmap
-
-                mBinding.ivDishImage.setImageBitmap(bitmap)
-
-                mBinding.ivAddDishImage.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        this,
-                        R.drawable.ic_vector_edit
-                    )
-                )
-            }
-            if (requestCode == GALLERY) {
-                data?.let {
-                    val selectedPhotoURI = data.data
-                    mBinding.ivDishImage.setImageURI(selectedPhotoURI)
-
-                    mBinding.ivAddDishImage.setImageDrawable(ContextCompat.getDrawable(this,
-                        R.drawable.ic_vector_edit))
-                }
-            }
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-            Log.e("Add Update Dish Activity", "User cancelled Image")
-        }
-    }
-
     private fun showRationalDialogForPermission() {
         AlertDialog.Builder(this).setMessage("Permissions turned off required for feature." +
                 "It can be enabled under Application settings.")
@@ -303,17 +352,17 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         return file.absolutePath
     }
 
-    private fun customItemDialog(title: String, itemList: List<String>, selection: String) {
-        val customListDialog = Dialog(this)
+    private fun customItemListDialog(title: String, itemList: List<String>, selection: String) {
+        mCustomListDialog = Dialog(this)
         val binding: DialogCustomListBinding = DialogCustomListBinding.inflate(layoutInflater)
 
-        customListDialog.setContentView(binding.root)
+        mCustomListDialog.setContentView(binding.root)
         binding.tvTitle.text = title
 
         binding.rvList.layoutManager = LinearLayoutManager(this)
         val adapter = CustomListItemAdapter(this, itemList, selection)
         binding.rvList.adapter = adapter
-        customListDialog.show()
+        mCustomListDialog.show()
     }
 
     companion object {
@@ -323,3 +372,35 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
         private const val IMAGE_DIRECTORY = "FavDishImages"
     }
 }
+
+
+/*
+*  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA) {
+                val bitmap: Bitmap = data?.extras?.get("data") as Bitmap
+
+                mBinding.ivDishImage.setImageBitmap(bitmap)
+
+                mBinding.ivAddDishImage.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        this,
+                        R.drawable.ic_vector_edit
+                    )
+                )
+            }
+            if (requestCode == GALLERY) {
+                data?.let {
+                    val selectedPhotoURI = data.data
+                    mBinding.ivDishImage.setImageURI(selectedPhotoURI)
+
+                    mBinding.ivAddDishImage.setImageDrawable(ContextCompat.getDrawable(this,
+                        R.drawable.ic_vector_edit))
+                }
+            }
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            Log.e("Add Update Dish Activity", "User cancelled Image")
+        }
+    }
+* */
