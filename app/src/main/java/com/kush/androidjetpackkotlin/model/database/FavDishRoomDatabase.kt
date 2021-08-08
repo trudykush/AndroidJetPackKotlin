@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.kush.androidjetpackkotlin.model.entities.FavDish
-import java.security.AccessControlContext
 
 @Database(entities = [FavDish::class], version = 1)
 abstract class FavDishRoomDatabase : RoomDatabase() {
