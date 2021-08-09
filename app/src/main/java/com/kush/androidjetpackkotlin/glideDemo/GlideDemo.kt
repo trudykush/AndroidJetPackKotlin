@@ -7,6 +7,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.kush.androidjetpackkotlin.R
 import com.kush.androidjetpackkotlin.databinding.ActivityGlideDemoBinding
 
+/*
+* This is to practice Glide
+* */
 class GlideDemo : AppCompatActivity() {
 
     private val supermanImage = getString(R.string.superman_image)
