@@ -19,6 +19,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -38,6 +39,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import com.kush.androidjetpackkotlin.R
+import com.kush.androidjetpackkotlin.application.FavDishApplication
 import com.kush.androidjetpackkotlin.databinding.ActivityAddUpdateDishBinding
 import com.kush.androidjetpackkotlin.databinding.DialogCustomImageSelectionBinding
 import com.kush.androidjetpackkotlin.databinding.DialogCustomListBinding
@@ -55,6 +57,10 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
     private var mImagePath: String = ""
 
     private lateinit var mCustomListDialog: Dialog
+//
+//    private val mFavDishViewModel : FavDishViewFModel by viewModels {
+//        FavDishViewModelFactory((application as FavDishApplication).repository)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
