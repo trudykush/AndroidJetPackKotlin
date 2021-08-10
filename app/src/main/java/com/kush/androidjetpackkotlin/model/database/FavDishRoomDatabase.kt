@@ -1,6 +1,7 @@
 package com.kush.androidjetpackkotlin.model.database
 
 import android.content.Context
+import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -8,6 +9,8 @@ import com.kush.androidjetpackkotlin.model.entities.FavDish
 
 @Database(entities = [FavDish::class], version = 1)
 abstract class FavDishRoomDatabase : RoomDatabase() {
+
+    abstract fun favDishDao(): FavDishDao
 
     companion object {
         @Volatile
