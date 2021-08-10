@@ -45,6 +45,8 @@ import com.kush.androidjetpackkotlin.databinding.DialogCustomImageSelectionBindi
 import com.kush.androidjetpackkotlin.databinding.DialogCustomListBinding
 import com.kush.androidjetpackkotlin.utils.Constants
 import com.kush.androidjetpackkotlin.view.adapters.CustomListItemAdapter
+import com.kush.androidjetpackkotlin.viewmodel.FavDishViewModel
+import com.kush.androidjetpackkotlin.viewmodel.FavDishViewModelFactory
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -57,10 +59,10 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
     private var mImagePath: String = ""
 
     private lateinit var mCustomListDialog: Dialog
-//
-//    private val mFavDishViewModel : FavDishViewFModel by viewModels {
-//        FavDishViewModelFactory((application as FavDishApplication).repository)
-//    }
+
+    private val mFavDishViewModel : FavDishViewModel by viewModels {
+        FavDishViewModelFactory((application as FavDishApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

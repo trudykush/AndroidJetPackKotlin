@@ -16,7 +16,7 @@ class FavDishViewModel(private val repository: FavDishRepository) : ViewModel() 
 }
 
 
-class FavViewModelFactory(private val repository: FavDishRepository) : ViewModelProvider.Factory {
+class FavDishViewModelFactory (private val repository: FavDishRepository) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(FavDishViewModel::class.java)) {
