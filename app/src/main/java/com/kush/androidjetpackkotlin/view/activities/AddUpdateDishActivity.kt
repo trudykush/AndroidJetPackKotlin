@@ -43,6 +43,7 @@ import com.kush.androidjetpackkotlin.application.FavDishApplication
 import com.kush.androidjetpackkotlin.databinding.ActivityAddUpdateDishBinding
 import com.kush.androidjetpackkotlin.databinding.DialogCustomImageSelectionBinding
 import com.kush.androidjetpackkotlin.databinding.DialogCustomListBinding
+import com.kush.androidjetpackkotlin.model.entities.FavDish
 import com.kush.androidjetpackkotlin.utils.Constants
 import com.kush.androidjetpackkotlin.view.adapters.CustomListItemAdapter
 import com.kush.androidjetpackkotlin.viewmodel.FavDishViewModel
@@ -164,9 +165,19 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_LONG).show()
                         }
                         else -> {
-                            Toast.makeText(this@AddUpdateDishActivity,
-                                getString(R.string.all_valid_entries),
-                                Toast.LENGTH_LONG).show()
+                            val favDishDetails: FavDish = FavDish(
+                                mImagePath,
+                                Constants.DISH_IMAGE_SOURCE_LOCAL,
+                                title,
+                                type,
+                                category,
+                                ingredients,
+                                cookingTimeInMinutes,
+                                cookingDirection,
+                                false
+                            )
+
+
                         }
                     }
                 }
