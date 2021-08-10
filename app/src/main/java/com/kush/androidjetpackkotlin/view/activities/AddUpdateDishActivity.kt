@@ -177,7 +177,12 @@ class AddUpdateDishActivity : AppCompatActivity(), View.OnClickListener {
                                 false
                             )
 
-
+                            mFavDishViewModel.insert(favDishDetails)
+                            Toast.makeText(this@AddUpdateDishActivity,
+                                "You successfully added your favorite dish details",
+                                Toast.LENGTH_LONG).show()
+                            Log.i("Insertion", "Success")
+                            finish()
                         }
                     }
                 }
